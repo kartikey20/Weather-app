@@ -22,17 +22,19 @@ window.addEventListener("load", () =>{
                     temperatureDegree.textContent = temperature;
                     temperatureDescription.textContent = summary;
                     locationTimezone.textContent = data.timezone;
-                   
-
+                    // conversion
+                    let celsius = (temperature-32)*(5/9);
                     setIcons(icon,document.querySelector('.icon'));
                     // change temperature scale
                     degreeSection.addEventListener('click', () => {
                         if(degreeSectionSpan.textContent === "F"){
                             degreeSectionSpan.textContent = "C"
+                            temperatureDegree.textContent = Math.floor(celsius);
                         }
                         else
                         {
                             degreeSectionSpan.textContent = "F"
+                            temperatureDegree.textContent = temperature;
                         }
                     })
 
