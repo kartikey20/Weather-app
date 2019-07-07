@@ -4,8 +4,8 @@ window.addEventListener("load", () =>{
    let temperatureDescription = document.querySelector('.temperature-description');
    let temperatureDegree = document.querySelector('.temperature-degree');
    let locationTimezone = document.querySelector('.location-timezone');
-   let degreeSection = document.querySelector('.degree-section')
-    let degreeSectionSpan = document.querySelector('.degree-section span')
+   let degreeSection = document.querySelector('.degree-section');
+    let degreeSectionSpan = document.querySelector('.degree-section span');
     if(navigator.geolocation){
         navigator.geolocation.getCurrentPosition(position => {
             long = position.coords.longitude;
@@ -17,6 +17,7 @@ window.addEventListener("load", () =>{
                     return response.json();
                 })
                 .then(data => {
+                    console.log(data);
                     const {temperature, summary, icon} = data.currently;
                     // Setting DOM elements
                     temperatureDegree.textContent = temperature;
@@ -28,13 +29,13 @@ window.addEventListener("load", () =>{
                     // change temperature scale
                     degreeSection.addEventListener('click', () => {
                         if(degreeSectionSpan.textContent === "F"){
-                            degreeSectionSpan.textContent = "C"
-                            temperatureDegree.textContent = Math.floor(celsius);
+                            degreeSectionSpan.textContent = "C";
+                            temperatureDegree.textContent = JSON.stringify(Math.floor(celsius));
                         }
                         else
                         {
-                            degreeSectionSpan.textContent = "F"
-                            temperatureDegree.textContent = temperature;
+                            degreeSectionSpan.textContent = "F";
+                            temperatureDegree.textContent = JSON.stringify(temperature);
                         }
                     })
 
